@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+
+<!-- call with: http://www.domain.com/Camera.html?type=camera -->
+<!-- call with: http://www.domain.com/Camera.html?type=rtmp -->
+<!-- call with: http://www.domain.com/Camera.html defaults to rtmp -->
+
+  <head>
+
+    <title>Camera Send/Receive With Red5 - JWMP v4.5.x - swfobject v2.x</title>
+
+    <style type="text/css">
+      .playercontainer
+      {
+        display:             inline;
+      }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+
+    <script type="text/javascript">
+	function getPlayer(streamName, playerId){
+		  var flashvars =
+		  {
+			'streamer':                     'rtmp://ks380544.kimsufi.com/oflaDemo',
+		  //...the camera will be recorded in the "streams" directory
+			'file':                         streamName,
+		  //...simpleBroadcaster
+		  //'file':                         'red5StreamDemo',
+			'type':                          'rtmp',
+			'controlbar':                   'bottom',
+			'stretching':                   'none',
+			'frontcolor':                   '86C29D',  // text & icons                  (green)
+			'backcolor':                    '849BC1',  // playlist background           (blue)
+			'lightcolor':                   'C286BA',  // selected text/track highlight (pink)
+			'screencolor':                  'FFFFFF',  // screen background             (black)
+			'id':                           'playerID',
+			'autostart':                    'true'
+		  };
+
+		  var params =
+		  {
+			'allowfullscreen':              'true',
+			'allowscriptaccess':            'always',
+			'bgcolor':                      '#FFFFFF'
+		  };
+
+		  var attributes =
+		  {
+			'id':                           'playerID',
+			'name':                         'playerID'
+		  };
+
+		  //...later v4.5.x players don't support type=camera
+		  //~ swfobject.embedSWF('player-4.5.207.swf', 'player', '320', '260', '9.0.124', false, flashvars, params, attributes);
+		  swfobject.embedSWF('player.swf', playerId, '320', '260', '9.0.124', false, flashvars, params, attributes);
+      }
+      
+      getPlayer("Christopher", 'chris');
+      getPlayer("Marek", 'marek');
+    </script>
+
+  </head>
+
+  <body>
+
+    <div id="playercontainer" class="playercontainer"><a id="chris" class="chris" href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Get the Adobe Flash Player to see this video.</a></div>
+    <div id="playercontainer" class="playercontainer"><a id="marek" class="marek" href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Get the Adobe Flash Player to see this video.</a></div>
+
+  </body>
+
+</html> 
