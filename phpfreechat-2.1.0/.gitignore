@@ -7,5 +7,3 @@ server/log/*
 server/config.local.php.tmp
 server/data/*
 .directory
-jquery.phpfreechat.css
-jquery.phpfreechat.min.css
