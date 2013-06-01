@@ -17,6 +17,9 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
+            #chris_wrapper, #marek_wrapper { margin: 0 auto;}
+            
+            @import url("http://stream.komuso.cz/chat/chat/css/shoutbox.css");
         </style>
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/main.css">
@@ -34,7 +37,7 @@
 
             <!-- Example row of columns -->
             <div class="row">
-                <div class="span6">
+                <div class="span6 text-center">
                 	<h2 class="page-header">Christopher Yohmei Blasdel</h2>
 					<div id="chris"></div>
                 </div>
@@ -43,9 +46,12 @@
 					<div style="margin: 0 auto;" id="marek"></div>
                 </div>
             </div>
+            
+            <hr>
+            
             <div class="row">
                 <div class="span12">
-                	<h2 class="page-header">Be heard!</h2>
+                	<iframe src="http://stream.komuso.cz/chat/chat/" style="width: 100%; border: none; min-height: 500px;"></iframe>
                 </div>
             </div>
 
