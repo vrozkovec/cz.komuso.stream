@@ -1,17 +1,3 @@
-<?php
-
-require_once dirname(__FILE__)."/phpfreechat-1.6/src/phpfreechat.class.php";
-$params = array();
-$params["title"] = "Komuso Chat";
-$params["nick"] = "guest".rand(1,1000);  // setup the intitial nickname
-$params['firstisadmin'] = true;
-//$params["isadmin"] = true; // makes everybody admin: do not use it on production servers ;)
-$params["serverid"] = md5(__FILE__); // calculate a unique id for this chat
-$params["debug"] = false;
-$chat = new phpFreeChat( $params );
-
-?>
-  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -60,11 +46,6 @@ $chat = new phpFreeChat( $params );
             <div class="row">
                 <div class="span12">
                 	<h2 class="page-header">Be heard!</h2>
-					  <?php $chat->printChat(); ?>
-					  <?php if (isset($params["isadmin"]) && $params["isadmin"]) { ?>
-					    <p style="color:red;font-weight:bold;">Warning: because of "isadmin" parameter, everybody is admin. Please modify this script before using it on production servers !</p>
-					  <?php } ?>
-<!--                 	<div id="mychat"><a href="http://www.phpfreechat.net">Creating chat rooms everywhere - phpFreeChat</a></div> -->
                 </div>
             </div>
 
