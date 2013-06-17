@@ -74,7 +74,7 @@
 		            		<li>
 		            			<strong>Server</strong> tab
 		            			<blockquote>
-			            			change Location: rtmp://ks380544.kimsufi.com:8080/oflaDemo 
+			            			change Location: rtmp://ks380544.kimsufi.com/oflaDemo 
 		            			</blockquote>
 		            			press Connect
 		            		</li>
@@ -127,7 +127,7 @@
 				  
 			  function komusoPlayer(id, stream){
 					jwplayer(id).setup({
-						file: "rtmp://ks380544.kimsufi.comi:8080/oflaDemo/flv:"+stream,
+						file: "rtmp://ks380544.kimsufi.comi/oflaDemo/flv:"+stream,
 						primary: "flash",
 						autostart: true
 					});
