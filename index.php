@@ -127,7 +127,7 @@
 				  
 			  function komusoPlayer(id, stream){
 					jwplayer(id).setup({
-						file: "rtmp://ks380544.kimsufi.comi/oflaDemo/flv:"+stream,
+						file: "rtmp://ks380544.kimsufi.com/oflaDemo/flv:"+stream,
 						primary: "flash",
 						autostart: true
 					});
