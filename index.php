@@ -18,6 +18,7 @@
                 padding-bottom: 40px;
             }
             #chris_wrapper, #marek_wrapper { margin: 0 auto;}
+            #marek, #chris { min-height: 350px; }
             
             @import url("http://stream.komuso.cz/chat/chat/css/shoutbox.css");
         </style>
@@ -34,22 +35,24 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="container">
+        <div class="container-fluid">
 
             <!-- Example row of columns -->
-            <div class="row">
+            <div class="row-fluid">
                 <div class="span6 text-center">
-                	<h2 class="page-header">Christopher Yohmei Blasdel</h2>
+                	<h3 class="page-header">Christopher Yohmei Blasdel <small>Tokyo <span id="tokyo"></span></small></h3>
 					<div id="chris"></div>
                 </div>
                 <div class="span6 text-center">
-                	<h2 class="page-header">Marek Matvija</h2>
+                	<h3 class="page-header">Marek Matvija, Jan Mucska <small>Prague <span id="prague"></span></small></h3>
 					<div style="margin: 0 auto;" id="marek"></div>
                 </div>
             </div>
             
             <hr>
-            
+        </div>
+
+        <div class="container">
             <div class="row">
                 <div class="span12">
                 	<iframe src="http://stream.komuso.cz/chat/chat/" style="width: 100%; border: none; min-height: 500px;"></iframe>
@@ -66,43 +69,24 @@
             <h2 class="page-header"><a href="javascript:void(0)" id="toggle" onclick="javascript:void(0);">Setup</a></h2>
             
              <div class="row" id="instructions" style="display: none;">
-            	<ol>
-            		<li><a class="btn" target="_blank" href="http://ks380544.kimsufi.com:5080/demos/publisher.html"><i class="icon-film"></i> Click me to open recording settings</a></li>
-            		<li>bottom left box <strong>Settings</strong> :
-		            	<ol>
-		            		<li>
-		            			<strong>Video tab</strong> - select recording device and Start  
-		            		</li>
-		            		<li>
-		            			<strong>Audio tab</strong> - select recording device and Start  
-		            		</li>
-		            		<li>
-		            			<strong>Server</strong> tab
-		            			<blockquote>
-			            			change Location: rtmp://ks380544.kimsufi.com/oflaDemo 
-		            			</blockquote>
-		            			press Connect
-		            		</li>
-		            	</ol>
+            	<ul class="unstyled">
+            		<li>
+            			<blockquote>
+	            			FMS Url: rtmp://ks380544.kimsufi.com/live
+            			</blockquote>
             		</li>
-            		<li>top left box <strong>Monitor</strong> :
-		            	<ol>
-		            		<li>Publish</strong> tab
-		            			<blockquote>
-			            			change name to Marek or Christopher
-		            			</blockquote>
-		            			press Publish
-		            		</li>
-		            	</ol>
+            		<li>
+						<blockquote>
+							Stream: Marek or Christopher
+            			</blockquote>
             		</li>            		
-            		<li>Video on this page should start automatically.</li>
-            	</ol>
+            	</ul>
             </div>
 
             <hr>
 
             <footer>
-                <p>&copy; Company 2012</p>
+                <p>&copy; Prague Shakuhachi Festival 2013</p>
             </footer>
 
         </div> <!-- /container -->
@@ -132,9 +116,11 @@
 				  
 			  function komusoPlayer(id, stream){
 					jwplayer(id).setup({
-						file: "rtmp://ks380544.kimsufi.com/live:"+stream,
+						file: "rtmp://ks380544.kimsufi.com/live/flv:"+stream,
 						primary: "flash",
-						autostart: true
+						autostart: true,
+						width: "80%",
+						height: "80%"
 					});
 				}
 				
@@ -145,7 +131,90 @@
 					$("#instructions").toggle('slow');
 				});
 				
+								
+								
+				function loadTime(timezone) {
+
+					http_request = false;
+
+					if (window.XMLHttpRequest) {
+
+						// Mozilla, Safari,...
+						http_request = new XMLHttpRequest();
+
+						if (http_request.overrideMimeType) {
+
+							// set type accordingly to anticipated content type
+
+							// http_request.overrideMimeType('text/xml');
+
+							http_request.overrideMimeType('text/html');
+
+						}
+
+					} else if (window.ActiveXObject) { // IE
+						try {
+
+							http_request = new ActiveXObject("Msxml2.XMLHTTP");
+
+						} catch (e) {
+
+							try {
+
+								http_request = new ActiveXObject("Microsoft.XMLHTTP");
+
+							} catch (e) {
+
+							}
+						}
+					}
+					var parameters;
+
+					if (timezone == 'tokyo'){
+							parameters = "time=&tzone=Asia/Tokyo";
+					} else {
+							parameters = "time=&tzone=Europe/Prague";
+					}
+
+					http_request.onreadystatechange = function alertContents() {
+						if (http_request.readyState == 4) {
+
+							if (http_request.status == 200) {
+								result = http_request.responseText;
+					            document.getElementById(timezone).innerHTML = result;
+							}
+						}
+					}
+
+
+					http_request.open('POST', 'time.php', true);
+
+					http_request.setRequestHeader("Content-type",
+							"application/x-www-form-urlencoded");
+
+					http_request.setRequestHeader("Content-length", parameters.length);
+
+					http_request.setRequestHeader("Connection", "close");
+
+					http_request.send(parameters);
+
+				}
+
+				
+         		function updateTimePrague(){
+					loadTime("prague");
+				}
+         		function updateTimeTokyo(){
+					loadTime("tokyo");
+				}
+				
+				$(document).ready(function() {
+					setInterval('updateTimePrague()', 641);
+					setInterval('updateTimeTokyo()', 733);
+				});
+				
 		</script>
+		
             
     </body>
 </html>
