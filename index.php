@@ -55,6 +55,11 @@
                 	<iframe src="http://stream.komuso.cz/chat/chat/" style="width: 100%; border: none; min-height: 500px;"></iframe>
                 </div>
             </div>
+            <div class="row">
+                <div class="span6 offset3">
+                	<a class="btn btn-block" href="psf-2013-timetable.pdf" target="_blank"><i class="icon-download-alt"></i> Timetable of Prague Shakuhachi Festival 2013</a>
+                </div>
+            </div>
 
 
  <!-- Main hero unit for a primary marketing message or call to action -->
